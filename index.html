@@ -1,1 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Heavenly Love - Wedding Invitations</title>
 
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ============ RESET & BASE ============ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: #f0f0f0;
+  padding: 20px;
+  transition: background 0.5s ease;
+}
+
+/* ============ THEME CONTROLS ============ */
+.theme-switcher {
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 30px; z-index: 10;
+}
+.theme-btn {
+  padding: 10px 20px; border: 2px solid #ccc; border-radius: 50px;
+  background: #fff; cursor: pointer; font-weight: 600; font-size: 0.85rem;
+  transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px;
+}
+.theme-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.theme-btn.active { background: #333; color: #fff; border-color: #333; }
+
+/* ============ INVITATION CARD BASE ============ */
+.invite-card {
+  width: 100%; max-width: 600px; aspect-ratio: 3/4;
+  position: relative; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  transition: all 0.6s ease;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  padding: 40px 30px;
+}
+
+/* ============ CLOUDS & SKY ============ */
+.sky { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
+.cloud {
+  position: absolute; background: #fff; border-radius: 50%;
+  filter: blur(15px); opacity: 0.8;
+  animation: floatCloud 20s infinite ease-in-out;
+}
+.cloud::before, .cloud::after {
+  content: ''; position: absolute; background: inherit; border-radius: 50%;
+}
+.cloud-1 { width: 120px; height: 60px; top: 10%; left: -20px; animation-delay: 0s; }
+.cloud-1::before { width: 80px; height: 80px; top: -30px; left: 20px; }
+.cloud-1::after { width: 60px; height: 60px; top: -10px; left: 60px; }
+
+.cloud-2 { width: 150px; height: 70px; top: 15%; right: -30px; animation-delay: -5s; }
+.cloud-2::before { width: 100px; height: 100px; top: -40px; left: 30px; }
+.cloud-2::after { width: 70px; height: 70px; top: -20px; left: 80px; }
+
+.cloud-3 { width: 100px; height: 50px; bottom: 20%; left: 10%; animation-delay: -10s; }
+.cloud-3::before { width: 70px; height: 70px; top: -25px; left: 15px; }
+
+@keyframes floatCloud {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(20px); }
+}
+
+/* ============ ANGELS & ARROWS ============ */
+.angels-container {
+  position: relative; z-index: 2; width: 100%; height: 180px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 20px;
+}
+.angel {
+  display: flex; flex-direction: column; align-items: center;
+  font-size: 2.5rem; color: inherit;
+  animation: floatAngel 4s infinite ease-in-out;
+}
+.angel-right { animation-delay: -2s; transform: scaleX(-1); }
+.angel i.fa-feather-pointed { font-size: 1.5rem; transform: rotate(-45deg); margin-top: -10px; }
+.angel i.fa-bow-arrow { font-size: 2rem; }
+
+@keyframes floatAngel {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+.angel-right { animation: floatAngelRight 4s infinite ease-in-out; }
+@keyframes floatAngelRight {
+  0%, 100% { transform: translateY(0) scaleX(-1); }
+  50% { transform: translateY(-15px) scaleX(-1); }
+}
+
+.centerpiece {
+  position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 120px;
+}
+.heart-container {
+  position: relative; font-size: 4rem; color: inherit;
+  animation: pulseHeart 2s infinite ease-in-out;
+}
+.heart-container i.fa-heart { filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2)); }
+.arrow-pierce {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg);
+  font-size: 5rem; color: inherit; z-index: -1;
+}
+
+@keyframes pulseHeart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* ============ TEXT CONTENT ============ */
+.content {
+  position: relative; z-index: 2; text-align: center; width: 100%;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding-bottom: 20px;
+}
+.content .subtitle { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
+.content .names { font-size: 3.5rem; line-height: 1.2; margin: 10px 0; }
+.content .date { font-size: 1.2rem; font-weight: 600; margin-top: 10px; }
+.content .venue { font-size: 1rem; opacity: 0.9; }
+.content .divider { width: 60px; height: 2px; background: currentColor; margin: 10px 0; opacity: 0.5; }
+
+/* =========================================
+   THEME 1: WATERCOLOR ROMANCE
+   ========================================= */
+.theme-watercolor {
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+  color: #831843;
+}
+.theme-watercolor .cloud { background: #fff; opacity: 0.9; filter: blur(20px); }
+.theme-watercolor .angel { color: #d4af37; }
+.theme-watercolor .heart-container { color: #be123c; }
+.theme-watercolor .arrow-pierce { color: #d4af37; }
+.theme-watercolor .names { font-family: 'Great Vibes', cursive; color: #9d174d; }
+.theme-watercolor .subtitle, .theme-watercolor .date, .theme-watercolor .venue {
+  font-family: 'Playfair Display', serif; font-style: italic;
+}
+
+/* =========================================
+   THEME 2: MODERN MINIMALIST
+   ========================================= */
+.theme-minimalist {
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
+}
+.theme-minimalist .cloud { background: #f3f4f6; opacity: 0.5; filter: blur(30px); }
+.theme-minimalist .angel { color: #9ca3af; font-size: 2rem; }
+.theme-minimalist .heart-container { color: #d1d5db; font-size: 3rem; }
+.theme-minimalist .arrow-pierce { color: #b8860b; font-size: 4rem; }
+.theme-minimalist .names { font-family: 'Montserrat', sans-serif; font-weight: 300; letter-spacing: 8px; font-size: 2.5rem; }
+.theme-minimalist .subtitle { letter-spacing: 4px; font-size: 0.75rem; }
+.theme-minimalist .divider { width: 30px; height: 1px; background: #b8860b; }
+
+/* =========================================
+   THEME 3: VINTAGE BAROQUE
+   ========================================= */
+.theme-baroque {
+  background: #fdfbf7;
+  color: #78350f;
+  border: 8px double #c5a059;
+  padding: 30px 20px;
+}
+.theme-baroque::before {
+  content: ''; position: absolute; inset: 10px; border: 1px solid #c5a059; z-index: 0;
+}
+.theme-baroque .cloud { background: #fef3c7; opacity: 0.6; filter: blur(25px); }
+.theme-baroque .angel { color: #b45309; font-size: 3rem; }
+.theme-baroque .heart-container { color: #991b1b; font-size: 4.5rem; }
+.theme-baroque .arrow-pierce { color: #c5a059; font-size: 5.5rem; }
+.theme-baroque .names { font-family: 'Cinzel Decorative', cursive; font-size: 2.8rem; color: #92400e; }
+.theme-baroque .subtitle, .theme-baroque .date, .theme-baroque .venue {
+  font-family: 'Cinzel Decorative', cursive; letter-spacing: 2px;
+}
+
+/* =========================================
+   THEME 4: CELESTIAL DREAM
+   ========================================= */
+.theme-celestial {
+  background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
+  color: #e2e8f0;
+}
+.theme-celestial .sky {
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+  background-size: 550px 550px, 350px 350px, 250px 250px;
+  background-position: 0 0, 40px 60px, 130px 270px;
+}
+.theme-celestial .cloud { background: #cbd5e1; opacity: 0.3; filter: blur(30px); }
+.theme-celestial .angel { color: #f8fafc; text-shadow: 0 0 20px rgba(255,255,255,0.8); }
+.theme-celestial .heart-container { color: #f1f5f9; text-shadow: 0 0 30px rgba(255,255,255,0.6); }
+.theme-celestial .arrow-pierce { color: #94a3b8; text-shadow: 0 0 15px rgba(255,255,255,0.5); }
+.theme-celestial .names { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.2rem; color: #f8fafc; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+.theme-celestial .divider { background: #94a3b8; box-shadow: 0 0 10px #fff; }
+
+/* =========================================
+   THEME 5: STORYBOOK WHIMSY
+   ========================================= */
+.theme-whimsy {
+  background: linear-gradient(to bottom, #bae6fd 0%, #e0f2fe 100%);
+  color: #0369a1;
+}
+.theme-whimsy .cloud { background: #fff; opacity: 1; filter: blur(10px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+.theme-whimsy .angel { color: #f43f5e; font-size: 3rem; }
+.theme-whimsy .heart-container { color: #e11d48; font-size: 4rem; }
+.theme-whimsy .arrow-pierce { color: #fbbf24; font-size: 5rem; }
+.theme-whimsy .names { font-family: 'Pacifico', cursive; font-size: 3.5rem; color: #be123c; }
+.theme-whimsy .subtitle, .theme-whimsy .date, .theme-whimsy .venue {
+  font-family: 'Montserrat', sans-serif; font-weight: 600;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 600px) {
+  .invite-card { aspect-ratio: auto; min-height: 700px; padding: 30px 20px; }
+  .content .names { font-size: 2.5rem !important; }
+  .theme-btn { padding: 8px 14px; font-size: 0.75rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Theme Switcher -->
+<div class="theme-switcher">
+  <button class="theme-btn active" data-theme="watercolor">Watercolor</button>
+  <button class="theme-btn" data-theme="minimalist">Minimalist</button>
+  <button class="theme-btn" data-theme="baroque">Baroque</button>
+  <button class="theme-btn" data-theme="celestial">Celestial</button>
+  <button class="theme-btn" data-theme="whimsy">Whimsy</button>
+</div>
+
+<!-- Invitation Card -->
+<div class="invite-card theme-watercolor" id="inviteCard">
+  
+  <!-- Sky & Clouds -->
+  <div class="sky">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+  </div>
+
+  <!-- Angels Shooting Arrows -->
+  <div class="angels-container">
+    <div class="angel angel-left">
+      <i class="fa-solid fa-feather-pointed"></i>
+      <i class="fa-solid fa-bow-arrow"></i>
+    </div>
+    <div class="angel angel-right">
+      <i class="fa-solid fa-feather-pointed"></i>
+      <i class="fa-solid fa-bow-arrow"></i>
+    </div>
+  </div>
+
+  <!-- Center Heart -->
+  <div class="centerpiece">
+    <div class="heart-container">
+      <i class="fa-solid fa-heart"></i>
+      <i class="fa-solid fa-arrow-right-long arrow-pierce"></i>
+    </div>
+  </div>
+
+  <!-- Text Content -->
+  <div class="content">
+    <span class="subtitle">Together with their families</span>
+    <h1 class="names">Alex & Jordan</h1>
+    <div class="divider"></div>
+    <p class="subtitle">Request the pleasure of your company</p>
+    <p class="date">October 12, 2025 • 4:00 PM</p>
+    <p class="venue">The Grand Botanical Gardens<br/>New York, NY</p>
+  </div>
+
+</div>
+
+<script>
+// Theme Switching Logic
+const buttons = document.querySelectorAll('.theme-btn');
+const card = document.getElementById('inviteCard');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove active class from all buttons
+    buttons.forEach(b => b.classList.remove('active'));
+    // Add active class to clicked button
+    btn.classList.add('active');
+    
+    // Remove all theme classes from card
+    card.className = 'invite-card';
+    // Add new theme class
+    card.classList.add(`theme-${btn.dataset.theme}`);
+  });
+});
+</script>
+
+</body>
+</html>
